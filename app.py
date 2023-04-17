@@ -39,7 +39,7 @@ class Product(db.Model):
     precio = db.Column(db.Integer())
     artesano = db.Column(db.String(50))
     descripcion = db.Column(db.String(100))
-
+    file_name = db.Column(db.String(100))
 with app.app_context():
     db.create_all()
 
@@ -75,12 +75,12 @@ def upload():
     product_desc = form['product_desc']
     file = request.files ['upload_file']
     file_name = secure_filename(file.filename)
-    print(form)
+    
     if file and allowed_files(file_name):
         print ("permitido")
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name)) # guardar el archivo capturado con lalibreria os
 
-    new_product = Product(producto = product_name, precio = product_price, artesano = vendedor, descripcion = product_desc)
+    new_product = Product(producto = product_name, precio = product_price, artesano = vendedor, descripcion = product_desc, file_name = file_name)
     db.session.add(new_product)
     db.session.commit()
 

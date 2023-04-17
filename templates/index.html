@@ -7,6 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="{{ url_for ('static', filename = 'css/style.css')}}">
+    <style>
+        img{
+            width: 90%;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,6 +25,7 @@
             {% for p in product %}
                 <div class = "product_box" id = "add">
                     <div id = "product_box"></div>
+                    <img src="/static/uploads/{{ p.file_name }}" alt="">
                     <h1>{{ p.producto  }}</h1>
                     <h2>{{ p.precio  }}</h2>
                     <p>{{ p.artesano }}</p>
@@ -40,6 +46,7 @@
         const product_form = document.getElementById('form')
         const btn_save = document.getElementById('save')
         const product_box = document.getElementById('product_box')
+
         
 
         add_product.style.display ='none';
