@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Catalogo</title>
+	</head>
+	<body>
+        <section
+		aria-labelledby="filter-heading"
+		class="grid items-center border-b border-t border-gray-200">
+		<h2 id="filter-heading" class="sr-only">Filters</h2>
+		<div class="relative col-start-1 row-start-1 py-4">
+			<div
+				class="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8">
+				<div>
+					<button type="button" class="group flex items-center font-medium text-gray-700" aria-controls="disclosure-1" @click="open = !open" aria-expanded="true" x-bind:aria-expanded="open.toString()">
+						<svg class="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z" clip-rule="evenodd"></path>
+					</svg>
+						Filtro
+					</button>
+				</div>
+				<div class="pl-6">
+					<button type="button" class="text-gray-500">
+						Quitar filtros
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="border-t border-gray-200 py-10" id="disclosure-1">
+			<div
+				class="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8">
+				<div
+					class="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6"
+				></div>
+				<div
+					class="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6">
+					<fieldset>
+						<legend class="block font-medium">Category</legend>
+						<div class="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-0"
+									name="category[]"
+									value="Trabajos con hierro"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-0"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Trabajos con hierro</label>
+							</div>
+
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-1"
+									name="category[]"
+									value="trabajos en cuero"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-1"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Trabajos en cuero</label>
+							</div>
+
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-2"
+									name="category[]"
+									value="trabajos con madera"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-2"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Trabajos en madera</label>
+							</div>
+
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-3"
+									name="category[]"
+									value="trabajos con hilo"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-3"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Trabajos con hilo</label>
+							</div>
+
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-4"
+									name="category[]"
+									value="Trabajos con papel"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-4"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Trabajos con papel</label>
+							</div>
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-5"
+									name="category[]"
+									value="productos personalizados"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-5"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Productos personalizados</label>
+							</div>
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-6"
+									name="category[]"
+									value="termos"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-6"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Termos</label>
+							</div>
+							<div class="flex items-center text-base sm:text-sm">
+								<input
+									id="category-7"
+									name="category[]"
+									value="pinturas"
+									type="checkbox"
+									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+								<label
+									for="category-7"
+									class="ml-3 min-w-0 flex-1 text-gray-600"
+									>Pinturas</label>
+							</div>
+						</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+	</section>
+    <section>
+
+        
+
+        <div class="bg-white">
+            <div class="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+                <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
+					{% for p in product %}
+                    <a href="#" class="group text-sm">
+						<div
+							class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+							<img
+								class="h-80"
+								src="/static/uploads/{{ p.file_name }}"
+								alt="{{p.descripcion}}"
+								class="h-full w-full object-cover object-center"/>
+						</div>
+                        <h2 class="mt-4 font-medium text-gray-900">
+                            {{p.producto }}
+                        </h2>
+						<h3 class="mt-4 font-medium text-gray-900">
+							{{ p.descripcion }}
+						</h3>
+						<p class="italic text-gray-500">{{ p.artesano }} </p>
+						<p class="mt-2 font-medium text-gray-900"> {{p.precio }}</p>
+					</a>
+					{% endfor %}
+                </div>
+            </div>
+
+        
+
+        </div>
+    </section>
+    </body>
+</html>

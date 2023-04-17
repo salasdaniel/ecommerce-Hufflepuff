@@ -63,6 +63,21 @@ def render ():
 
     return render_template ('index.html', product = product)
 
+@app.route('/catalogo')
+def catalogo():
+    return render_template( 'templates_finales/catalogo.html')
+
+@app.route('/render_catalogo')
+def render_catalogo ():
+    with app.app_context():
+        product = db.session.query(Product).all()
+        print(product)
+        print(type(product))
+
+    return render_template ('templates_finales/catalogo.html', product = product)
+
+
+
         
 #------------------formulario para agregar producto --------------------------------------------------------------------
 @app.route('/upload', methods=['GET', 'POST'])
