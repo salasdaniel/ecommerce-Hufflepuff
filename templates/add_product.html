@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for ('static', filename = 'css/style.css')}}">
+    <title>Document</title>
+</head>
+<body>
+</div>
+
+    <div id = "add_product">
+        <button id = "exit">x</button>
+        <form action="/upload" method="POST" enctype="multipart/form-data" id = "form">
+                <div id = "product_img"></div>
+                
+                <input type="text" placeholder = "nombre del producto" name = "product_name" id ="product_name">
+                <input type="number" placeholder="precio" name = "product_price" id="product_price">
+                <select name="vendedor" id="vendedor">
+                    <option value="luis">Luis</option>
+                    <option value="jose">jose</option>
+                    <option value="pedro">pedro</option>
+                    <option value="maria">maria</option>
+                </select>
+                <input type="text" placeholder="Descripcion" name = "product_desc" id = "product_desc">
+                <input type="file" required id ="upload_file" name="upload_file" >
+                <button  id = "save" type="submit" >Enviar</button>
+    </form>
+    </div>
+    
+</body>
+</html>

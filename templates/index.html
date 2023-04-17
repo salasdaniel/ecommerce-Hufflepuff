@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for ('static', filename = 'css/style.css')}}">
+</head>
+<body>
+
+    <section id ="section_1">
+
+        <div id = "show_product">
+            <div class = "add" id = "add">
+                <a href="/add_product"><h1>AGREGAR</h1></a>
+            </div>
+            
+            {% for p in product %}
+                <div class = "product_box" id = "add">
+                    <div id = "product_box"></div>
+                    <h1>{{ p.producto  }}</h1>
+                    <h2>{{ p.precio  }}</h2>
+                    <p>{{ p.artesano }}</p>
+                    <h3>{{ p.descripcion }}</h3>
+
+                </div>
+
+            {% endfor %}
+            
+ 
+    </section>
+    <script>
+        const btn_exit = document.getElementById('exit')
+        const add_product = document.getElementById ('add_product') ;
+        const btn_add = document.getElementById('add')
+        const product_img = document.getElementById('product_img')
+        const upload_file = document.getElementById('upload_file')
+        const product_form = document.getElementById('form')
+        const btn_save = document.getElementById('save')
+        const product_box = document.getElementById('product_box')
+        
+
+        add_product.style.display ='none';
+
+
+        function exit (){
+            add_product.style.display ='none';
+        }
+
+        function show (){
+            add_product.style.display ='flex'
+        }
+
+        
+
+        upload_file.addEventListener('change', (e)=>{
+
+            file = e.target
+            img = file.files[0]
+            img_url = URL.createObjectURL(img)
+            console.log(img_url)
+
+            product_img.style.backgroundImage = `url(${img_url})`;
+            product_img.style.backgroundSize = "contain";
+            product_img.style.backgroundPosition = "center";
+            product_img.style.backgroundRepeat = "no-repeat";
+        })
+
+        
+
+        btn_save.addEventListener('click', function(e){
+
+            product_name = document.getElementById('product_name').value
+            product_price = document.getElementById('product_price').value
+            vendedor = document.getElementById('vendedor').value
+            product_desc = document.getElementById('product_desc').value
+            show_product = document.getElementById('show_product')
+
+            show_product.innerHTML += `
+                <div class = "product_box" id = "add">
+                    <img class = "imgbox" src="${img_url}" alt="" srcset="">
+                    <h1>${product_name}</h1>
+                    <h2>${product_price}</h2>
+                    <p>${product_desc}</p>
+                    <h3>${vendedor}</h3>   
+                </div>`;
+
+        })
+        
+        btn_add.addEventListener('click',show)
+        btn_exit.addEventListener('click', exit)
+
+    </script>
+</body>
+</html>
