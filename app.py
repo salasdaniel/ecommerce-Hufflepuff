@@ -77,6 +77,10 @@ def add_product():
     artesano = db.session.query(Artesano).all()
     return render_template( 'templates_finales/page_load.html', artesano = artesano)
 
+@app.route('/carrito')
+def carrito():
+    return render_template( 'templates_finales/carrito.html')
+
 @app.route('/render')
 def render ():
     with app.app_context():

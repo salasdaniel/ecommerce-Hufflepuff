@@ -215,7 +215,7 @@
 		let     last = 1;
 
 		const saveLocal = (carrito) =>{
-			localStorage.setItem("compra", JSON.stringify(carrito))
+			localStorage.setItem("carrito", JSON.stringify(carrito))
 		}
 
 
@@ -278,6 +278,8 @@
 			}
 		
 		})
+		carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
+		console.log(carritoRecuperado)
 	 </script>
     </body>
 </html>
