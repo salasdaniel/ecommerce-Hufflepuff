@@ -18,10 +18,10 @@
                 <input type="text" placeholder = "nombre del producto" name = "product_name" id ="product_name">
                 <input type="number" placeholder="precio" name = "product_price" id="product_price">
                 <select name="vendedor" id="vendedor">
-                    <option value="luis">Luis</option>
-                    <option value="jose">jose</option>
-                    <option value="pedro">pedro</option>
-                    <option value="maria">maria</option>
+                    <option value="" disabled>-- Elegir un arteso--</option>
+                    {%for i in artesano%}
+                    <option value="{{ i.nombre}}">{{ i.nombre}}</option>
+                    {% endfor %}
                 </select>
                 <input type="text" placeholder="Descripcion" name = "product_desc" id = "product_desc">
                 <input type="file" required id ="upload_file" name="upload_file" >
