@@ -64,6 +64,28 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), nullable=False)
+
+# --------------------------- Creacion de la tabla Compras en db--------------------
+class Compra(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    producto = db.Column(db.String(20))
+    precio = db.Column(db.Integer())
+    fecha = db.Column(db.DateTime)
+    total = db.Column(db.Integer())
+
+# --------------------------- Creacion de la tabla Datos del cliente--------------------
+class Datos_cliente(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(50), nullable=False)
+    apellido = db.Column(db.String(50), nullable=False)
+    ruc = db.Column(db.Integer(), nullable=False)
+    ciudad = db.Column(db.String(50), nullable=False)
+    barrio = db.Column(db.String(50), nullable=False)
+    direccion = db.Column(db.String(50), nullable=False)
+    telefono = db.Column(db.Integer(), nullable=False)
+    email = db.Column(db.String(50))
+    pago = db.Column(db.String(50))
+
     
 with app.app_context():
     db.create_all()
@@ -117,7 +139,12 @@ def register():
 @app.route("/login")
 def login():
     return render_template("login.html")
-        
+
+@app.route("/pago")
+def pago():
+
+    return render_template("pago.html")
+
 #------------------formulario para agregar producto --------------------------------------------------------------------
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -202,6 +229,27 @@ def new_login():
     else:
         flash('Usuario o contraseña incorrectos')
         return redirect(url_for("login"))
+    
+@app.route('/pago', methods=['GET', 'POST'])
+def new_pago():
+
+    form = request.form
+
+    nombre = form["nombre"]
+    apellido = form["apellido"]
+    ruc = form["ruc"]
+    ciudad = form["ciudad"]
+    barrio = form["barrio"]
+    direccion = form["direccion"]
+    telefono = form["telefono"]
+    email = form["email"]
+    pago = form["pago"]
+
+    new_pago = Datos_cliente(nombre = nombre, apellido = apellido, ruc = ruc, ciudad = ciudad, barrio= barrio, direccion = direccion, telefono = telefono, email = email, pago = pago)
+    db.session.add(new_pago)
+    db.session.commit()
+
+    return redirect(url_for("pago"))
 
 #-----------------------------------------------------------------------------------------------------------------------------   
     
