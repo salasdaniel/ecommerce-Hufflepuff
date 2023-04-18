@@ -4,6 +4,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 
 #------------------- creamos la instancia de Flask como app y la base de datos para esta app-----------------------------------
 
@@ -53,6 +54,15 @@ class Penitenciaria(db.Model):
     id = db.Column(db.Integer(), primary_key = True)
     ciudad = db.Column(db.String(50))
     nombre = db.Column(db.String(50))
+
+# --------------------------- Creacion de la tabla compra en db--------------------    
+class Compra(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    producto = db.Column(db.String(20))
+    precio = db.Column(db.Integer())
+    cantidad = db.Column(db.String(50))
+    total_producto = db.Column(db.String(50))
+    fecha = db.Column(db.DateTime)  
 
 with app.app_context():
     db.create_all()
@@ -156,6 +166,24 @@ def upload_penitenciaria():
 
     return redirect(url_for("admin_view")) #Ambos redireccionan a "admin_view"
 #-----------------------------------------------------------------------------------------------------------------------------   
+
+#------------------formulario para enviar compra --------------------------------------------------------------------
+@app.route('/enviar_compra', methods=['GET', 'POST'])
+def enviar_compra():
+
+    form = request.form
+    producto= form['producto']
+    precio = form["precio"]
+    cantidad = form["cantidad"]
+    total_producto = form["total"]
+    fecha = datetime.now()
+
+    nueva_compra = Compra(producto = producto, precio = precio, cantidad = cantidad, total_producto = total_producto, fecha = fecha )
+    db.session.add(nueva_compra)
+    db.session.commit()
+
+    return "Revisa tu base de datos mi rey, a ver si no la fundiste"
+#----------------------------------------------------------------------------------------------------------------------------- 
     
 #------------------------------------ run app ----------------------------------------------------
 if __name__ == '__main__':

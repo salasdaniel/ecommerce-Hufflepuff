@@ -94,9 +94,13 @@
             <section aria-labelledby="cart-heading">
               <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
       
-              <form action = "" id = "product_list" role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+              <form action = "/enviar_compra" method="post" id = "product_list" role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
                    
                 <!-- More products... -->
+                <div class="mt-10">
+                  <button type="submit" class="w-full rounded-md border border-transparent bg-orange-400 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Procesar pedido</button>
+                </div>
+                
               </form>
             </section>
       
@@ -114,9 +118,7 @@
                 <p class="mt-1 text-sm text-gray-500">El costo de envio sera calculado al finalizar el proceso.</p>
               </div>
       
-              <div class="mt-10">
-                <button type="submit" class="w-full rounded-md border border-transparent bg-orange-400 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Procesar pedido</button>
-              </div>
+              
       
               <div class="mt-6 text-center text-sm">
                 <p>
@@ -225,7 +227,7 @@
       </footer>
 
       <script>
-        
+
         carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
         product_list = document.getElementById('product_list')
         campo_total = document.getElementById('total')
@@ -245,9 +247,9 @@
                       <div>
                         <div class="flex justify-between">
                           <h4 class="text-sm">
-                            <input type="text"  name = "producto" id = "producto" readonly class="font-medium text-gray-700 hover:text-gray-800">${carritoRecuperado[i].nombre}.</input>
+                            <input type="text"  name = "producto" id = "producto" readonly value ="${carritoRecuperado[i].nombre}" class="font-medium text-gray-700 hover:text-gray-800">
                           </h4>
-                          <input type="text"  name = "precio" id = "precio" readonly  class="ml-4 text-sm font-medium text-gray-900">${carritoRecuperado[i].precio}</input>
+                          <input type="text"  name = "precio" id = "precio" readonly   value = "${carritoRecuperado[i].precio}" class="ml-4 text-sm font-medium text-gray-900">
                         </div>
                         <p class="mt-1 text-sm text-gray-500">Elaborado sobre pedido de 24 a 48 horas</p>
                         <p class="mt-1 text-sm text-gray-500"></p>
@@ -258,11 +260,11 @@
                           <svg class="h-5 w-5 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                           </svg>
-                          <input type="text"  name = "cantidad" id = "cantidad" readonly >Cantidad: ${carritoRecuperado[i].cantidad}</input>
+                          <input type="text"  name = "cantidad" id = "cantidad" readonly  value = " ${carritoRecuperado[i].cantidad} ">Cantidad:</input>
                         </p>
                         <div class="ml-4">
                           <button type="button" class="text-sm font-medium text-red-600 hover:text-red-400">
-                            <input type="text"  name = "total" id = "total" readonly > ${carritoRecuperado[i].total}</input>
+                            <input type="text"  name = "total" id = "total"  value ="${carritoRecuperado[i].total}" > </input>
                           </button>
                         </div>
                       </div>
