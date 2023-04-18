@@ -7,6 +7,20 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<title>Catalogo</title>
 	</head>
+	<style>
+		#aumentar, #disminuir{
+			width: 30px;
+			height: 30px;
+			background-color: cadetblue;
+			cursor: pointer;
+		}
+		.btn{
+			width: 100px;
+			height: 50px;
+			background-color: lightgray;
+			margin: 5px;
+		}
+	</style>
 	<body>
         <section
 		aria-labelledby="filter-heading"
@@ -154,9 +168,9 @@
 
         <div class="bg-white">
             <div class="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-                <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
+                <div id = "contenedor" class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
 					{% for p in product %}
-                    <a href="#" class="group text-sm">
+                    <div  class="group text-sm">
 						<div
 							class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
 							<img
@@ -165,22 +179,104 @@
 								alt="{{p.descripcion}}"
 								class="h-full w-full object-cover object-center"/>
 						</div>
-                        <h2 class="mt-4 font-medium text-gray-900">
+                        <h2 id="producto{{ p.id }}" class="mt-4 font-medium text-gray-900">
                             {{p.producto }}
                         </h2>
 						<h3 class="mt-4 font-medium text-gray-900">
 							{{ p.descripcion }}
 						</h3>
 						<p class="italic text-gray-500">{{ p.artesano }} </p>
-						<p class="mt-2 font-medium text-gray-900"> {{p.precio }}</p>
-					</a>
+						<p class="mt-2 font-medium text-gray-900" id = "precio{{ p.id }}"> {{p.precio }}</p>
+						<input id="aumentar{{ p.id }}" type="button" value = "+" ></input>
+						<input id="disminuir{{ p.id }}" type="button" value= "-" ></input>
+						
+						<div class="texto">
+							<span id="marcador{{ p.id }}">Cant</span>
+							<span id ="total{{ p.id }}">Precio</span>
+							
+						</div>
+						<input id = "add{{p.id}}" class = "btn" type = "button" value="Agregar al carrito"></input>
+						<input id = "delete{{id}}" class = "btn" type = "button" value ="Eliminar"></input>
+					</div>
+					
 					{% endfor %}
-                </div>
+					
             </div>
 
         
 
         </div>
     </section>
+	<script>
+
+		let     valor=0;
+		let     carrito = [];
+		let     producto = "";
+		let     precio = 0;
+		let     last = 1;
+
+		const saveLocal = (carrito) =>{
+			localStorage.setItem("compra", JSON.stringify(carrito))
+		}
+
+
+		contenedor.addEventListener('click', (e)=>{
+
+			console.log(e.target.id)
+
+			if ( e.target.nodeName == "INPUT"){
+				cadena = (e.target.id)
+				
+				if (!cadena.includes(last)){
+					valor= 0;
+				}
+				last = cadena[cadena.length-1]
+				nombre = ("producto"+last)
+				nombre2 = document.getElementById(nombre).textContent.trim() 
+				marcador = ("marcador"+last)
+				precio = ("precio"+last)
+				total = ("total"+last)
+				precioUnidad	 = document.getElementById (precio)
+				precioNumber = parseInt(precioUnidad.textContent)
+
+			
+				if ( e.target.id.includes("aumentar")){
+
+					if (valor >= 0){
+					valor++;
+					document.getElementById(marcador).textContent = valor
+					document.getElementById(total).textContent = precioNumber * valor
+					}
+					
+				} else if ( e.target.id.includes("disminuir")){
+					if (valor>0){
+						valor --;
+						document.getElementById(marcador).textContent = valor
+						document.getElementById(total).textContent = precioNumber * valor
+					} 
+				
+				}else if (e.target.id.includes(last)){
+
+					let compra ={
+					nombre: nombre2,
+					cantidad: document.getElementById(marcador).textContent,
+					precio: precioNumber,
+					total : document.getElementById(total).textContent
+					}
+
+					valor = 0;
+					document.getElementById(marcador).textContent = valor
+					document.getElementById(total).textContent = valor
+
+					carrito.push(compra)
+					saveLocal(carrito)
+					console.log(carrito)
+					
+				}
+
+			}
+		
+		})
+	 </script>
     </body>
 </html>

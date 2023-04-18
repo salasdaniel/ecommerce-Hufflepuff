@@ -60,7 +60,7 @@ with app.app_context():
 # ------------------------------------------ rutas -----------------------------------     
 @app.route('/')
 def index():
-    return render_template( 'index.html')
+    return render_template('templates_finales/home.html')
 
 @app.route("/admin_view")
 def admin_view():
