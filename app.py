@@ -1,10 +1,14 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, session
 from werkzeug.utils import secure_filename
 import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+from flask_wtf import FlaskForm
+from wtforms import StringField, EmailField, PasswordField, SubmitField
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 #------------------- creamos la instancia de Flask como app y la base de datos para esta app-----------------------------------
 
@@ -12,6 +16,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///database.db'
 app.config['SECRET_KEY']= 'Salas.13' #CONTRASENIA PARA LA DATABASE
 db = SQLAlchemy(app)
+app.secret_key = 'cualquieraxd'
 
 #------------------------------ Crear motor de base de datos para poder extraer los datos----------------------------------
 
