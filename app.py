@@ -1,5 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, session #Bruh...
+from flask_wtf import FlaskForm
+from wtforms import StringField, EmailField, PasswordField, SubmitField
+from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
@@ -11,6 +15,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///database.db'
 app.config['SECRET_KEY']= 'Salas.13' #CONTRASENIA PARA LA DATABASE
 db = SQLAlchemy(app)
+app.secret_key = 'cualquieraxd' #Pa probar auxilio
 
 #------------------------------ Crear motor de base de datos para poder extraer los datos----------------------------------
 
@@ -53,6 +58,12 @@ class Penitenciaria(db.Model):
     ciudad = db.Column(db.String(50))
     nombre = db.Column(db.String(50))
 
+# --------------------------- Creacion de la tabla de Usuarios en db--------------------
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+    
 with app.app_context():
     db.create_all()
 
@@ -79,6 +90,13 @@ def render ():
 
     return render_template ('index.html', product = product)
 
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
         
 #------------------formulario para agregar producto --------------------------------------------------------------------
 @app.route('/upload', methods=['GET', 'POST'])
@@ -129,6 +147,40 @@ def upload_penitenciaria():
     db.session.commit()
 
     return redirect(url_for("admin_view")) #Ambos redireccionan a "admin_view"
+
+#------------------formulario para agregar Registro -----
+@app.route('/register', methods=['GET', 'POST'])
+def new_register():
+
+    form = request.form
+    username = form["username"]
+    password = form["password"]
+
+    usuario = Usuario.query.filter_by(username=username).first()
+    print(form)
+    if usuario:
+        return render_template("login.html")
+    nuevo_usuario = Usuario(username = username, password = password)
+    db.session.add(nuevo_usuario)
+    db.session.commit()
+    return redirect(url_for("login"))
+
+   
+#------------------ Login -----------------------
+@app.route('/login', methods=['GET', 'POST'])
+def new_login():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+
+    username = Usuario.query.filter_by(username = username).first()
+    password = Usuario.query.filter_by(password = password).first()
+    if username and password:
+        return redirect(url_for('admin_view'))
+    else:
+        flash('Usuario o contraseña incorrectos')
+        return redirect(url_for("login"))
+
 #-----------------------------------------------------------------------------------------------------------------------------   
     
 #------------------------------------ run app ----------------------------------------------------
