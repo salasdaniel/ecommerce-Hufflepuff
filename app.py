@@ -74,7 +74,8 @@ def admin_view():
 
 @app.route('/add_product')
 def add_product():
-    return render_template( 'add_product.html')
+    artesano = db.session.query(Artesano).all()
+    return render_template( 'templates_finales/page_load.html', artesano = artesano)
 
 @app.route('/render')
 def render ():
@@ -119,7 +120,8 @@ def upload():
     db.session.add(new_product)
     db.session.commit()
 
-    return redirect(url_for('render'))#redireciona a la ruta render
+    return redirect(url_for('render_catalogo'))#redireciona a la ruta render
+
 
 #------------------formulario para agregar Artesano --------------------------------------------------------------------
 @app.route('/upload_artesano', methods=['GET', 'POST'])
