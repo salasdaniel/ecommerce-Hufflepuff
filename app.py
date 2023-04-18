@@ -40,26 +40,47 @@ class Product(db.Model):
     artesano = db.Column(db.String(50))
     descripcion = db.Column(db.String(100))
     file_name = db.Column(db.String(100))
+
+# --------------------------- Creacion de la tabla Artesano en db--------------------
+class Artesano(db.Model):
+    id = db.Column(db.Integer(), primary_key = True)
+    nombre = db.Column(db.String(50))
+    apellido = db.Column(db.String(50))
+    penitenciaria = db.Column(db.String(50))
+
+# --------------------------- Creacion de la tabla Penitenciaria en db--------------------
+class Penitenciaria(db.Model):
+    id = db.Column(db.Integer(), primary_key = True)
+    ciudad = db.Column(db.String(50))
+    nombre = db.Column(db.String(50))
+
 with app.app_context():
     db.create_all()
-
-
 
 # ------------------------------------------ rutas -----------------------------------     
 @app.route('/')
 def index():
     return render_template( 'index.html')
 
+@app.route("/admin_view")
+def admin_view():
+    with app.app_context():
+        artesano = db.session.query(Artesano).all()
+        penitenciaria = db.session.query(Penitenciaria).all()
+        print(artesano)
+        print(penitenciaria)
+    return render_template("admin_view.html", artesano = artesano, penitenciaria = penitenciaria)
+
+
 @app.route('/add_product')
 def add_product():
-    return render_template( 'add_product.html')
+    artesano = db.session.query(Artesano).all()
+    return render_template( 'templates_finales/page_load.html', artesano = artesano)
 
 @app.route('/render')
 def render ():
     with app.app_context():
         product = db.session.query(Product).all()
-        print(product)
-        print(type(product))
 
     return render_template ('index.html', product = product)
 
@@ -99,7 +120,37 @@ def upload():
     db.session.add(new_product)
     db.session.commit()
 
-    return redirect(url_for('render'))#redireciona a la ruta render
+    return redirect(url_for('render_catalogo'))#redireciona a la ruta render
+
+
+#------------------formulario para agregar Artesano --------------------------------------------------------------------
+@app.route('/upload_artesano', methods=['GET', 'POST'])
+def upload_artesano():
+
+    form = request.form
+    nombre_artesano = form["nombre_artesano"]
+    apellido_artesano = form["apellido_artesano"]
+    penitenciaria_artesano = form ['penitenciaria_artesano']
+
+    nuevo_artesano = Artesano(nombre = nombre_artesano, apellido = apellido_artesano, penitenciaria = penitenciaria_artesano)
+    db.session.add(nuevo_artesano)
+    db.session.commit()
+
+    return redirect(url_for("admin_view")) 
+
+#------------------formulario para agregar Penitenciaria --------------------------------------------------------------------
+@app.route('/upload_penitenciaria', methods=['GET', 'POST'])
+def upload_penitenciaria():
+
+    form = request.form
+    ciudad_penitenciaria = form["ciudad_penitenciaria"]
+    nombre_penitenciaria = form["nombre_penitenciaria"]
+
+    nueva_penitenciaria = Penitenciaria(ciudad = ciudad_penitenciaria, nombre = nombre_penitenciaria)
+    db.session.add(nueva_penitenciaria)
+    db.session.commit()
+
+    return redirect(url_for("admin_view")) #Ambos redireccionan a "admin_view"
 #-----------------------------------------------------------------------------------------------------------------------------   
     
 #------------------------------------ run app ----------------------------------------------------

@@ -94,7 +94,7 @@
         </div>
 
         <form style="background-image: url(https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)"
-          class=" sm:rounded-xl md:col-span-2  m-[10rem]"
+          class=" sm:rounded-xl md:col-span-2  m-[10rem]" action="/upload" method="POST" enctype="multipart/form-data" id = "form"
         >
           <div class="px-4 py-6 sm:p-8 mt-4">
             <div
@@ -112,9 +112,10 @@
                   >
                   
                     <input
+                      autocomplete="off"
                       type="text"
-                      name="website"
-                      id="website"
+                      name="product_name"
+                      id="product_name"
                       class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-200 placeholder:text-gray-200 focus:ring-0 sm:text-sm sm:leading-6"
                       placeholder="Ingrese su producto"
                     />
@@ -134,14 +135,39 @@
                   >
                   
                     <input
-                      type="text"
-                      name="website"
-                      id="website"
+                      autocomplete="off"
+                      type="number"
+                      name="product_price"
+                      id="product_price"
                       class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       placeholder=" $ $$ $$$"
                     />
                   </div>
                 </div>
+                
+              </div>
+
+              <div class="sm:col-span-4 mt-2">
+                <label
+                  for="website"
+                  class="block text-sm font-medium leading-6 text-gray-200"
+                  >Artesano</label
+                >
+                <div class="mt-2">
+                  <div
+                    class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-200 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
+                  >
+                  
+                 <select name="vendedor" id="vendedor" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                 placeholder=" $ $$ $$$">
+                    <option value="" disabled>-- Elegir un artesano--</option>
+                    {%for i in artesano%}
+                    <option value="{{ i.nombre}}">{{ i.nombre}}</option>
+                    {% endfor %}
+                  </select>
+                  </div>
+                </div>
+                
               </div>
 
               <div class="col-span-full ">
@@ -152,15 +178,16 @@
                 >
                 <div class="mt-2 ">
                   <textarea
-                    id="about"
-                    name="about"
+                    autocomplete="off"
+                    id="product_desc"
+                    name="product_desc"
                     rows="3"
                     class="block w-96 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   ></textarea>
                 </div>
                 
               </div>
-
+              <!----------------------------------------------------------------------- -->
               <div class="col-span-full">
                 <label
                   for="photo"
@@ -189,6 +216,8 @@
                 </div>
               </div>
 
+              <!-- ------------------------------------------------------ -->
+
               <div class="col-span-full">
                 <label
                   for="cover-photo"
@@ -197,6 +226,7 @@
                 >
                 <div
                   class="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10"
+                  id = "product_img"
                 >
                   <div class="text-center">
                     <svg
@@ -216,15 +246,9 @@
                         for="file-upload"
                         class="relative cursor-pointer rounded-md  font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                       >
-                        <span>Sube tu imagen aqui</span>
-                        <input
-                          id="file-upload"
-                          name="file-upload"
-                          type="file"
-                          class="sr-only"
-                        />
+                    
                       </label>
-                      <p class="pl-1">or drag and drop</p>
+                     
                     </div>
                     <p class="text-xs leading-5 text-gray-600">
                       PNG, JPG, GIF up to 10MB
@@ -237,6 +261,12 @@
           <div
             class="flex items-center justify-end gap-x-6 px-4 py-4 sm:px-8"
           >
+            <input
+            id="upload_file"
+            name="upload_file"
+            type="file"
+            required
+          />
             <button
               type="button"
               class="text-sm font-semibold leading-6 text-gray-900"
@@ -348,5 +378,21 @@
         </div>
       </div>
     </footer>
+    <script>
+      const upload_file = document.getElementById('upload_file')
+      const product_img = document.getElementById('product_img')
+
+      upload_file.addEventListener('change', (e)=>{
+
+      file = e.target
+      img = file.files[0]
+      img_url = URL.createObjectURL(img)
+      product_img.style.backgroundImage = `url(${img_url})`;
+      product_img.style.backgroundSize = "contain";
+      product_img.style.backgroundPosition = "center";
+      product_img.style.backgroundRepeat = "no-repeat";
+      })
+    </script>
+
   </body>
 </html>
