@@ -176,6 +176,7 @@
 							<img
 								class="h-80"
 								src="/static/uploads/{{ p.file_name }}"
+								id = "img{{ p.id }}"
 								alt="{{p.descripcion}}"
 								class="h-full w-full object-cover object-center"/>
 						</div>
@@ -203,8 +204,6 @@
 					
             </div>
 
-        
-
         </div>
     </section>
 	<script>
@@ -230,7 +229,10 @@
 				if (!cadena.includes(last)){
 					valor= 0;
 				}
+				
 				last = cadena[cadena.length-1]
+				img = ("img"+last)
+				imgURL = document.getElementById(img).src
 				nombre = ("producto"+last)
 				nombre2 = document.getElementById(nombre).textContent.trim() 
 				marcador = ("marcador"+last)
@@ -238,7 +240,6 @@
 				total = ("total"+last)
 				precioUnidad	 = document.getElementById (precio)
 				precioNumber = parseInt(precioUnidad.textContent)
-
 			
 				if ( e.target.id.includes("aumentar")){
 
@@ -261,7 +262,8 @@
 					nombre: nombre2,
 					cantidad: document.getElementById(marcador).textContent,
 					precio: precioNumber,
-					total : document.getElementById(total).textContent
+					total : document.getElementById(total).textContent,
+					imagen : imgURL
 					}
 
 					valor = 0;
@@ -270,7 +272,6 @@
 
 					carrito.push(compra)
 					saveLocal(carrito)
-					console.log(carrito)
 					
 				}
 
