@@ -7,11 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+</style>
+
+<body class="bg-[url('/static/uploads/trabajando4.png')] bg-no-repeat bg-cover bg-center w-screen h-screen " >
     <header class="fixed top-0 w-full " style="background-image: url(https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
         <nav
-          class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+          class="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
           aria-label="Global"
         >
           
@@ -23,7 +33,7 @@
               alt=""
             />
           </a>
-          <div class="flex flex-1 ">
+          <div class="flex flex-1 place-content-center">
               <div class="mt-1 hidden lg:flex lg:gap-x-4 text-center">
                   <a href="#">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-200 ">
@@ -82,20 +92,18 @@
       </header>
 
 
-
-
-
-
-    <div class="bg-white">
-        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:px-0">
+    <div >
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6  ">
           <h1 class="text-lg text-center font-bold font-medium text-gray-900 font-extralight mt-16 ">TU CARRITO</h1>
-      
+
+          <div class="mt-8 rounded-lg border-gray-200 bg-white shadow-sm">
+
           <form class="mt-12">
             <section aria-labelledby="cart-heading">
               <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
       
               <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-                <li class="flex py-6">
+                <li class="flex p-6">
                   <div class="flex-shrink-0">
                     <img src="https://latente.gov.py/img/600x600/583bea0b6c3a80fd05bad2347002a9b6.jpg" alt="Kit de mate" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                   </div>
@@ -129,7 +137,7 @@
                   </div>
                 </li>
       
-                <li class="flex py-6">
+                <li class="flex p-6">
                   <div class="flex-shrink-0">
                     <img src="https://latente.gov.py/img/600x600/4ad34fe25b8b2c5a5369e51257445903.jpg" alt="Juego de 5 platos" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                   </div>
@@ -167,7 +175,7 @@
             </section>
       
             <!-- Order summary -->
-            <section aria-labelledby="summary-heading" class="mt-10">
+            <section aria-labelledby="summary-heading" class="p-8 mt-4">
               <h2 id="summary-heading" class="sr-only">Order summary</h2>
       
               <div>
