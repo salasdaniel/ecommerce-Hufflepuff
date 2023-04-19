@@ -103,6 +103,9 @@ with app.app_context():
 @app.route('/')
 def index():
     return render_template('templates_finales/home.html')
+@app.route('/home')
+def home():
+    return render_template('templates_finales/home.html')
 
 @app.route('/login_admin')
 def login_admin():
@@ -115,6 +118,11 @@ def register_admin():
 @app.route('/procesar_pedido')
 def procesar_pedido():
     return render_template('templates_finales/procesar_pedido.html')
+
+@app.route('/mensaje_final')
+def mensaje_final():
+    return render_template('templates_finales/mensaje_final.hmtl')
+
 
 
 #--------------------------------- Ruta sobrescrita por la de arriba -------------------
@@ -180,7 +188,7 @@ def upload():
     db.session.add(new_product)
     db.session.commit()
 
-    return redirect(url_for('render_catalogo'))#redireciona a la ruta render
+    return redirect(url_for('admin_view'))#redireciona a la ruta render
 
 
 #------------------formulario para agregar Artesano --------------------------------------------------------------------
@@ -283,7 +291,7 @@ def new_pago():
     db.session.add(new_pago)
     db.session.commit()
 
-    return redirect(url_for("render_catalogo"))
+    return render_template("templates_finales/mensaje_final.html")
 
     
 #------------------------------------ run app ----------------------------------------------------

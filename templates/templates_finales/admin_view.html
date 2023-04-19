@@ -25,7 +25,7 @@
     }
 </style>
 
-<body class="bg-[url('/static/uploads/trabajando7.png')] bg-no-repeat bg-cover bg-center w-screen h-screen align-items">
+<body class="bg-[url('/static/uploads/trabajando7.png')] ">
     <header
     class="fixed top-0 w-full w-screen"
     style="
@@ -62,10 +62,6 @@
                 />
             </svg>
             </a>
-          
-            
-               
-           
             
         </div>
         <div class="flex lg:hidden">
@@ -100,111 +96,119 @@
         </div>
     </nav>
     </header>
+        <div >
 
-    <div class="grid grid-cols-2 mt-32 text-center ">
-      
-    <div class="">
-        <h1 class="text-2xl">ARTESANOS</h1>
-        <form action="/upload_artesano" method="post">
-        <input
-            type="text"
-            placeholder="Nombre"
-            id="nombre_artesano"
-            name="nombre_artesano"
-        />
-        <input
-            type="text"
-            placeholder="Apellido"
-            id="apellido_artesano"
-            name="apellido_artesano"
-        />
-        <select name="penitenciaria_artesano" id="penitenciaria_artesano">
-            <option value="" disabled>--Elegir ubicacion--</option>
-            {% for i in penitenciaria %}
-            <option value="{{i.nombre}}">{{i.nombre}}</option>
-            {% endfor %}
-        </select>
-        <button class="border-solid border-2 border-amber-500 bg-amber-500 ... rounded-lg w-16 mt-4 text-white" type="submit ">Enviar</button>
-        </form>
-    <div class="mt-4"> LISTA DE ARTESANOS</div>
-    <div class="mt-4 flex justify-center items-center max-w-9xl">
-    <table class="table w-full border-2 border-gray-700 mr-24 ml-16 bg-slate-200">
-        <tr class="">
-        <th class="uppercase text-slate-700" >ID</th>
-        <th class="uppercase text-slate-700" >NOMBRE</th>
-        <th class="uppercase text-slate-700 " >APELLIDO</th>
-        <th class="uppercase text-slate-700 " >UBICACION</th>
-        </tr>
-        {% for i in artesano%}
-        <tr>
-        <td class="uppercase text-slate-500" >{{i.id}}</td>
-        <td class="uppercase text-slate-500" >{{i.nombre}}</td>
-        <td class="uppercase text-slate-500" >{{i.apellido}}</td>
-        <td class="uppercase text-slate-500" > {{i.penitenciaria}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    </div>
-    </div>
-  
+                <div class="grid grid-cols-2 mt-32 text-center ">
+                
+                <div class="">
+                    <h1 class="text-2xl">AGREGAR NUEVO ARTESANO</h1>
+                    <form action="/upload_artesano" method="post">
+                    <input
+                    autocomplete="off"
+                    style = "padding: 8px; border-radius: 5px;"
+                        type="text"
+                        placeholder="Nombre"
+                        id="nombre_artesano"
+                        name="nombre_artesano"
+                    />
+                    <input
+                    autocomplete="off"
+                    style = "padding: 8px; border-radius: 5px;"
+                        type="text"
+                        placeholder="Apellido"
+                        id="apellido_artesano"
+                        name="apellido_artesano"
+                    />
+                    <select name="penitenciaria_artesano" id="penitenciaria_artesano" style = "padding: 8px; border-radius: 5px;">
+                        <option value="" disabled>--Elegir ubicacion--</option>
+                        {% for i in penitenciaria %}
+                        <option value="{{i.nombre}}">{{i.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="border-solid border-2 border-amber-500 bg-amber-500 ... rounded-lg w-16 mt-4 text-white" type="submit " style="padding: 7px">+</button>
+                    </form>
+                <div class="mt-4"> LISTA DE ARTESANOS</div>
+                <div class="mt-4 flex justify-center items-center max-w-9xl">
+                <table class="table w-full border-2 border-gray-700 mr-24 ml-16 bg-slate-200" style =" background-color: white; border: none; border-radius: 5px;">
+                    <tr class="">
+                    <th class="uppercase text-slate-700" style="padding: 10px ;" >ID</th>
+                    <th class="uppercase text-slate-700" style="padding: 10px ;" >NOMBRE</th>
+                    <th class="uppercase text-slate-700 " style="padding: 10px ;" >APELLIDO</th>
+                    <th class="uppercase text-slate-700 "  style="padding: 10px ;">UBICACION</th>
+                    </tr>
+                    {% for i in artesano%}
+                    <tr>
+                    <td class="uppercase text-slate-500" style="padding: 10px">{{i.id}}</td>
+                    <td class="uppercase text-slate-500" style="padding: 10px">{{i.nombre}}</td>
+                    <td class="uppercase text-slate-500" style="padding: 10px">{{i.apellido}}</td>
+                    <td class="uppercase text-slate-500" style="padding: 10px"> {{i.penitenciaria}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>
+                </div>
+            
 
-    <div class="text-center col-2">
-    <div class="">
-    <h1 class="text-2xl">PENITENCIARIAS</h1>
-    </div>
-    <form action="/upload_penitenciaria" method="post">
-    <input
-        type="text"
-        placeholder="Penitenciaria"
-        id="nombre_penitenciaria"
-        name="nombre_penitenciaria"
-    />
-    <input
-        type="text"
-        placeholder="Ciudad"
-        id="ciudad_penitenciaria"
-        name="ciudad_penitenciaria"
-    />
-    <button class="border-solid border-2 border-amber-500 bg-amber-500 ... rounded-lg w-16 mt-4 text-white" type="submit">Enviar</button>
-    </form>
-    <div class="mt-4"> LISTA DE PENITENCIARIAS</div>
-    <div class="mt-4 flex justify-center items-center rounded-lg">
-    <table class="table w-full border-2 border-gray-700 ml-24 mr-20 bg-slate-200">
-    <tr  >
-        <th class="uppercase text-slate-700">ID</th>
-        <th class="uppercase text-slate-700"> CIUDAD</th>
-        <th class="uppercase text-slate-700">UBICACION</th>
-    </tr>
-    {% for i in penitenciaria %}
-    <tr>
-        <td class="uppercase text-slate-500">{{i.id}}</td>
-        <td class="uppercase text-slate-500">{{i.ciudad}}</td>
-        <td class="uppercase text-slate-500">{{i.nombre}}</td>
-    </tr>
-    {% endfor %}
-    </table>
-    </div>
-    
-    <div>
-        <a href="/add_product">
-        <button
-        class="group relative flex w-full justify-center rounded-md bg-amber-500 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  style="width: 300px; height:  100px; align-items: center;"
-        >
-      
-        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-          <svg
-            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          ></svg>
-        </span>
-        Agregar productos al catalogo
-      </button>
-    </a>
-
-    </div>
-    
+                <div class="text-center col-2">
+                <div class="">
+                <h1 class="text-2xl">AGREGAR NUEVA PENITENCIARIA</h1>
+                </div>
+                <form action="/upload_penitenciaria" method="post">
+                <input
+                autocomplete="off"
+                style = "padding: 8px; border-radius: 5px;"
+                    type="text"
+                    placeholder="Penitenciaria"
+                    id="nombre_penitenciaria"
+                    name="nombre_penitenciaria"
+                />
+                <input
+                autocomplete="off"
+                    style = "padding: 8px; border-radius: 5px;" type="text"
+                    placeholder="Ciudad"
+                    id="ciudad_penitenciaria"
+                    name="ciudad_penitenciaria"
+                />
+                <button class="border-solid border-2 border-amber-500 bg-amber-500 ... rounded-lg w-16 mt-4 text-white" type="submit" style="padding: 7px">+</button>
+                </form>
+                <div class="mt-4"> LISTA DE PENITENCIARIAS</div>
+                <div class="mt-4 flex justify-center items-center rounded-lg">
+                <table class="table w-full border-2 border-gray-700 ml-24 mr-20 bg-slate-200" style =" background-color: white; border: none; border-radius: 5px;">
+                <tr>
+                    <th class="uppercase text-slate-700"  style="padding: 10px">ID</th>
+                    <th class="uppercase text-slate-700" style="padding: 10px"> CIUDAD</th>
+                    <th class="uppercase text-slate-700" style="padding: 10px">UBICACION</th>
+                </tr>
+                {% for i in penitenciaria %}
+                <tr>
+                    <td class="uppercase text-slate-500" style="padding: 10px">{{i.id}}</td>
+                    <td class="uppercase text-slate-500" style="padding: 10px">{{i.ciudad}}</td>
+                    <td class="uppercase text-slate-500" style="padding: 10px">{{i.nombre}}</td>
+                </tr>
+                {% endfor %}
+                </table>
+                </div>
+            </div>
+                <div id="laconcha" class = "grid grid-cols-2 gap-4 place-content-center h-48 ..." style="position: absolute;left: 40vw; top:50vh; ">
+                
+                    <a href="/add_product" style="justify-content: center;">
+                        <button
+                        class="group relative flex w-full justify-center rounded-md bg-amber-500 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  style="width: 300px; height:  80px; align-items: center;"
+                        >
+                    
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg
+                            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        ></svg>
+                        </span>
+                        Agregar productos al catalogo
+                    </button>
+                    </a>
+                </div>
+                
     <footer class="fixed bottom-0 left-0 w-full" style="background-image: url(https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
         <div
         class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8 "
