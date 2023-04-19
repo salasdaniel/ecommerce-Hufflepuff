@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, session #Bruh...
 from flask_wtf import FlaskForm
 from wtforms import StringField, EmailField, PasswordField, SubmitField
-from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user, session
+# from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user, session
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -104,13 +104,32 @@ with app.app_context():
 def index():
     return render_template('templates_finales/home.html')
 
+@app.route('/login_admin')
+def login_admin():
+    return render_template('templates_finales/vista_registro_adm.html')
+
+@app.route('/register_admin')
+def register_admin():
+    return render_template('templates_finales/registro_admin.html')
+
+
+#--------------------------------- Ruta sobrescrita por la de arriba -------------------
+
+# @app.route("/login")
+# def login():
+#     return render_template("login.html")
+
+# @app.route("/register")
+# def register():
+#     return render_template("register.html")
+
+#----------------------------------------------------------------------------------------
+
 @app.route("/admin_view")
 def admin_view():
     with app.app_context():
         artesano = db.session.query(Artesano).all()
         penitenciaria = db.session.query(Penitenciaria).all()
-        print(artesano)
-        print(penitenciaria)
     return render_template("admin_view.html", artesano = artesano, penitenciaria = penitenciaria)
 
 
@@ -143,15 +162,6 @@ def render_catalogo ():
 
     return render_template ('templates_finales/catalogo.html', product = product)
 
-
-
-@app.route("/register")
-def register():
-    return render_template("register.html")
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
 
 @app.route("/pago")
 def pago():
@@ -228,6 +238,61 @@ def enviar_compra():
 
     return "Revisa tu base de datos mi rey, a ver si no la fundiste"
 #----------------------------------------------------------------------------------------------------------------------------- 
+#------------------formulario para agregar Registro -----
+@app.route('/register', methods=['GET', 'POST'])
+def new_register():
+
+    form = request.form
+    username = form["username"]
+    password = form["password"]
+
+    usuario = Usuario.query.filter_by(username=username).first()
+    print(form)
+    if usuario:
+        return redirect(url_for("login_admin"))
+    nuevo_usuario = Usuario(username = username, password = password)
+    db.session.add(nuevo_usuario)
+    db.session.commit()
+    return redirect(url_for("login_admin"))
+
+#------------------ Login -----------------------
+@app.route('/login', methods=['GET', 'POST'])
+def new_login():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+
+    username = Usuario.query.filter_by(username = username).first()
+    password = Usuario.query.filter_by(password = password).first()
+    if username and password:
+        return redirect(url_for('admin_view'))
+    else:
+        flash('Usuario o contraseña incorrectos')
+        return redirect(url_for("login_admin"))
+    
+#-----------------------------------------------------
+
+@app.route('/pago', methods=['GET', 'POST'])
+def new_pago():
+
+    form = request.form
+
+    nombre = form["nombre"]
+    apellido = form["apellido"]
+    ruc = form["ruc"]
+    ciudad = form["ciudad"]
+    barrio = form["barrio"]
+    direccion = form["direccion"]
+    telefono = form["telefono"]
+    email = form["email"]
+    pago = form["pago"]
+
+    new_pago = Datos_cliente(nombre = nombre, apellido = apellido, ruc = ruc, ciudad = ciudad, barrio= barrio, direccion = direccion, telefono = telefono, email = email, pago = pago)
+    db.session.add(new_pago)
+    db.session.commit()
+
+    return redirect(url_for("pago"))
+
     
 #------------------------------------ run app ----------------------------------------------------
 if __name__ == '__main__':
