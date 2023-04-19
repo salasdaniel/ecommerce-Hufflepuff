@@ -1,13 +1,18 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, session #Bruh...
 from flask_wtf import FlaskForm
 from wtforms import StringField, EmailField, PasswordField, SubmitField
-from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
+# from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user, session
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
+from flask_wtf import FlaskForm
+from wtforms import StringField, EmailField, PasswordField, SubmitField
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 #------------------- creamos la instancia de Flask como app y la base de datos para esta app-----------------------------------
 
@@ -16,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///database.db'
 app.config['SECRET_KEY']= 'Salas.13' #CONTRASENIA PARA LA DATABASE
 db = SQLAlchemy(app)
 app.secret_key = 'cualquieraxd' #Pa probar auxilio
+app.secret_key = 'cualquieraxd'
 
 #------------------------------ Crear motor de base de datos para poder extraer los datos----------------------------------
 
@@ -66,12 +72,6 @@ class Usuario(db.Model):
     password = db.Column(db.String(50), nullable=False)
 
 # --------------------------- Creacion de la tabla Compras en db--------------------
-class Compra(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    producto = db.Column(db.String(20))
-    precio = db.Column(db.Integer())
-    fecha = db.Column(db.DateTime)
-    total = db.Column(db.Integer())
 
 # --------------------------- Creacion de la tabla Datos del cliente--------------------
 class Datos_cliente(db.Model):
@@ -87,6 +87,15 @@ class Datos_cliente(db.Model):
     pago = db.Column(db.String(50))
 
     
+# --------------------------- Creacion de la tabla compra en db--------------------    
+class Compra(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    producto = db.Column(db.String(20))
+    precio = db.Column(db.Integer())
+    cantidad = db.Column(db.String(50))
+    total_producto = db.Column(db.String(50))
+    fecha = db.Column(db.DateTime)  
+
 with app.app_context():
     db.create_all()
 
@@ -95,20 +104,38 @@ with app.app_context():
 def index():
     return render_template('templates_finales/home.html')
 
+@app.route('/login_admin')
+def login_admin():
+    return render_template('templates_finales/vista_registro_adm.html')
+
+@app.route('/register_admin')
+def register_admin():
+    return render_template('templates_finales/registro_admin.html')
+
+@app.route('/procesar_pedido')
+def procesar_pedido():
+    return render_template('templates_finales/procesar_pedido.html')
+
+
+#--------------------------------- Ruta sobrescrita por la de arriba -------------------
+
+
 @app.route("/admin_view")
 def admin_view():
     with app.app_context():
         artesano = db.session.query(Artesano).all()
         penitenciaria = db.session.query(Penitenciaria).all()
-        print(artesano)
-        print(penitenciaria)
-    return render_template("admin_view.html", artesano = artesano, penitenciaria = penitenciaria)
+    return render_template("templates_finales/admin_view.html", artesano = artesano, penitenciaria = penitenciaria)
 
 
 @app.route('/add_product')
 def add_product():
     artesano = db.session.query(Artesano).all()
     return render_template( 'templates_finales/page_load.html', artesano = artesano)
+
+@app.route('/carrito')
+def carrito():
+    return render_template( 'templates_finales/carrito.html')
 
 @app.route('/render')
 def render ():
@@ -117,9 +144,6 @@ def render ():
 
     return render_template ('index.html', product = product)
 
-@app.route('/catalogo')
-def catalogo():
-    return render_template( 'templates_finales/catalogo.html')
 
 @app.route('/render_catalogo')
 def render_catalogo ():
@@ -130,15 +154,6 @@ def render_catalogo ():
 
     return render_template ('templates_finales/catalogo.html', product = product)
 
-
-
-@app.route("/register")
-def register():
-    return render_template("register.html")
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
 
 @app.route("/pago")
 def pago():
@@ -196,7 +211,25 @@ def upload_penitenciaria():
     db.session.commit()
 
     return redirect(url_for("admin_view")) #Ambos redireccionan a "admin_view"
+#-----------------------------------------------------------------------------------------------------------------------------   
 
+#------------------formulario para enviar compra --------------------------------------------------------------------
+@app.route('/enviar_compra', methods=['GET', 'POST'])
+def enviar_compra():
+
+    form = request.form
+    producto= form['producto']
+    precio = form["precio"]
+    cantidad = form["cantidad"]
+    total_producto = form["total"]
+    fecha = datetime.now()
+
+    nueva_compra = Compra(producto = producto, precio = precio, cantidad = cantidad, total_producto = total_producto, fecha = fecha )
+    db.session.add(nueva_compra)
+    db.session.commit()
+
+    return redirect(url_for("procesar_pedido"))
+#----------------------------------------------------------------------------------------------------------------------------- 
 #------------------formulario para agregar Registro -----
 @app.route('/register', methods=['GET', 'POST'])
 def new_register():
@@ -208,13 +241,12 @@ def new_register():
     usuario = Usuario.query.filter_by(username=username).first()
     print(form)
     if usuario:
-        return render_template("login.html")
+        return redirect(url_for("login_admin"))
     nuevo_usuario = Usuario(username = username, password = password)
     db.session.add(nuevo_usuario)
     db.session.commit()
-    return redirect(url_for("login"))
+    return redirect(url_for("login_admin"))
 
-   
 #------------------ Login -----------------------
 @app.route('/login', methods=['GET', 'POST'])
 def new_login():
@@ -228,8 +260,10 @@ def new_login():
         return redirect(url_for('admin_view'))
     else:
         flash('Usuario o contraseña incorrectos')
-        return redirect(url_for("login"))
+        return redirect(url_for("login_admin"))
     
+#-----------------------------------------------------
+
 @app.route('/pago', methods=['GET', 'POST'])
 def new_pago():
 
@@ -249,9 +283,8 @@ def new_pago():
     db.session.add(new_pago)
     db.session.commit()
 
-    return redirect(url_for("pago"))
+    return redirect(url_for("render_catalogo"))
 
-#-----------------------------------------------------------------------------------------------------------------------------   
     
 #------------------------------------ run app ----------------------------------------------------
 if __name__ == '__main__':
