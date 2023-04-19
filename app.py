@@ -112,25 +112,20 @@ def login_admin():
 def register_admin():
     return render_template('templates_finales/registro_admin.html')
 
+@app.route('/procesar_pedido')
+def procesar_pedido():
+    return render_template('templates_finales/procesar_pedido.html')
+
 
 #--------------------------------- Ruta sobrescrita por la de arriba -------------------
 
-# @app.route("/login")
-# def login():
-#     return render_template("login.html")
-
-# @app.route("/register")
-# def register():
-#     return render_template("register.html")
-
-#----------------------------------------------------------------------------------------
 
 @app.route("/admin_view")
 def admin_view():
     with app.app_context():
         artesano = db.session.query(Artesano).all()
         penitenciaria = db.session.query(Penitenciaria).all()
-    return render_template("admin_view.html", artesano = artesano, penitenciaria = penitenciaria)
+    return render_template("templates_finales/admin_view.html", artesano = artesano, penitenciaria = penitenciaria)
 
 
 @app.route('/add_product')
@@ -149,9 +144,6 @@ def render ():
 
     return render_template ('index.html', product = product)
 
-@app.route('/catalogo')
-def catalogo():
-    return render_template( 'templates_finales/catalogo.html')
 
 @app.route('/render_catalogo')
 def render_catalogo ():
@@ -236,7 +228,7 @@ def enviar_compra():
     db.session.add(nueva_compra)
     db.session.commit()
 
-    return "Revisa tu base de datos mi rey, a ver si no la fundiste"
+    return redirect(url_for("procesar_pedido"))
 #----------------------------------------------------------------------------------------------------------------------------- 
 #------------------formulario para agregar Registro -----
 @app.route('/register', methods=['GET', 'POST'])
@@ -291,7 +283,7 @@ def new_pago():
     db.session.add(new_pago)
     db.session.commit()
 
-    return redirect(url_for("pago"))
+    return redirect(url_for("render_catalogo"))
 
     
 #------------------------------------ run app ----------------------------------------------------

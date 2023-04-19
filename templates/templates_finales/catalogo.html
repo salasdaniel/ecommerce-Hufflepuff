@@ -26,9 +26,9 @@
 		aria-labelledby="filter-heading"
 		class="grid items-center border-b border-t border-gray-200">
 		<h2 id="filter-heading" class="sr-only">Filters</h2>
-		<div class="relative col-start-1 row-start-1 py-4">
+		<div class="relative col-start-1 row-start-1 py-4" >
 			<div
-				class="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8">
+				class="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8" style="justify-content: space-between;">
 				<div>
 					<button type="button" class="group flex items-center font-medium text-gray-700" aria-controls="disclosure-1" @click="open = !open" aria-expanded="true" x-bind:aria-expanded="open.toString()">
 						<svg class="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
@@ -42,7 +42,15 @@
 						Quitar filtros
 					</button>
 				</div>
+				
+					<a
+					  href="/carrito"
+					  class="rounded-md bg-amber-500 px-3.5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600  hover:text-gray-700"
+					  >Ver carrito <span aria-hidden="true">&rarr;</span></a
+					>
+				  
 			</div>
+			
 		</div>
 		<div class="border-t border-gray-200 py-10" id="disclosure-1">
 			<div
@@ -50,114 +58,12 @@
 				<div
 					class="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6"
 				></div>
-				<div
-					class="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6">
-					<fieldset>
-						<legend class="block font-medium">Category</legend>
-						<div class="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-0"
-									name="category[]"
-									value="Trabajos con hierro"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-0"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Trabajos con hierro</label>
-							</div>
-
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-1"
-									name="category[]"
-									value="trabajos en cuero"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-1"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Trabajos en cuero</label>
-							</div>
-
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-2"
-									name="category[]"
-									value="trabajos con madera"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-2"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Trabajos en madera</label>
-							</div>
-
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-3"
-									name="category[]"
-									value="trabajos con hilo"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-3"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Trabajos con hilo</label>
-							</div>
-
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-4"
-									name="category[]"
-									value="Trabajos con papel"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-4"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Trabajos con papel</label>
-							</div>
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-5"
-									name="category[]"
-									value="productos personalizados"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-5"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Productos personalizados</label>
-							</div>
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-6"
-									name="category[]"
-									value="termos"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-6"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Termos</label>
-							</div>
-							<div class="flex items-center text-base sm:text-sm">
-								<input
-									id="category-7"
-									name="category[]"
-									value="pinturas"
-									type="checkbox"
-									class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-								<label
-									for="category-7"
-									class="ml-3 min-w-0 flex-1 text-gray-600"
-									>Pinturas</label>
-							</div>
-						</div>
-						</div>
-					</fieldset>
+				<div style = "width: 100%;">
+					<h2
+					class="text-3xl font-bold tracking-tight text-gray-600 sm:text-4xl" 
+					>
+					CATALOGO DE PRODUCTOS
+					</h2>
 				</div>
 			</div>
 		</div>
@@ -188,22 +94,27 @@
 						</h3>
 						<p class="italic text-gray-500">{{ p.artesano }} </p>
 						<p class="mt-2 font-medium text-gray-900" id = "precio{{ p.id }}"> {{p.precio }}</p>
-						<input id="aumentar{{ p.id }}" type="button" value = "+" ></input>
-						<input id="disminuir{{ p.id }}" type="button" value= "-" ></input>
+						<input id="aumentar{{ p.id }}" type="button" value = "+" style = "width: 30px; height: 30px; background-color: darkorange; border-radius: 50%;"></input>
+						<input id="disminuir{{ p.id }}" type="button" value= "-" style = "width: 30px; height: 30px; background-color: darkorange; border-radius: 50%;"></input>
 						
-						<div class="texto">
-							<span id="marcador{{ p.id }}">Cant</span>
-							<span id ="total{{ p.id }}">Precio</span>
+						<div class="texto" style="display: flex;">
+							<div style="margin: 20px;">
+								<label for="marcador{{ p.id }}">Cant</label><br>
+								<span id="marcador{{ p.id }}">0</span> <br>
+							</div>
+							<div style="margin: 20px;">
+								<label for="marcador{{ p.id }}">Precio Total</label><br>
+								<span id ="total{{ p.id }}">0</span>
+							</div>
 							
 						</div>
-						<input id = "add{{p.id}}" class = "btn" type = "button" value="Agregar al carrito"></input>
-						<input id = "delete{{id}}" class = "btn" type = "button" value ="Eliminar"></input>
+						<input id = "add{{p.id}}" class = "btn" type = "button" value="Agregar al carrito" style = "width: 200px; height: 50px; background-color: darkorange;"></input>
 					</div>
 					
 					{% endfor %}
 					
             </div>
-
+		
         </div>
     </section>
 	<script>
