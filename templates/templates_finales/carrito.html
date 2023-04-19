@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>Carrito</title>
 </head>
 <body>
 
@@ -31,7 +31,7 @@
                         </svg>
                         
                     </a>
-                <a href="#" class=" hover:text-violet-600 cursor-pointer transition ease-out duration-200 text-sm font-semibold leading-6 text-gray-200"
+                <a href="/" class=" hover:text-violet-600 cursor-pointer transition ease-out duration-200 text-sm font-semibold leading-6 text-gray-200"
                   >Catalogo</a
                 >
                     
@@ -90,80 +90,18 @@
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:px-0">
           <h1 class="text-lg text-center font-bold font-medium text-gray-900 font-extralight mt-16 ">TU CARRITO</h1>
       
-          <form class="mt-12">
+          
             <section aria-labelledby="cart-heading">
               <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
       
-              <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-                <li class="flex py-6">
-                  <div class="flex-shrink-0">
-                    <img src="https://latente.gov.py/img/600x600/583bea0b6c3a80fd05bad2347002a9b6.jpg" alt="Kit de mate" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                  </div>
-      
-                  <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-                    <div>
-                      <div class="flex justify-between">
-                        <h4 class="text-sm">
-                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Kit termo de Mate o Tereré.</a>
-                        </h4>
-                        <p class="ml-4 text-sm font-medium text-gray-900">Gs. 220.000</p>
-                      </div>
-                      <p class="mt-1 text-sm text-gray-500">Kit termo de mate o tereré, frío-caliente, 
-                        yerbera, guampa y bolso. Elaborado sobre pedido</p>
-                      <p class="mt-1 text-sm text-gray-500"></p>
-                    </div>
-      
-                    <div class="mt-4 flex flex-1 items-end justify-between">
-                      <p class="flex items-center space-x-2 text-sm text-gray-700">
-                        <svg class="h-5 w-5 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                        </svg>
-                        <span>Disponible</span>
-                      </p>
-                      <div class="ml-4">
-                        <button type="button" class="text-sm font-medium text-red-600 hover:text-red-400">
-                          <span>Eliminar</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-      
-                <li class="flex py-6">
-                  <div class="flex-shrink-0">
-                    <img src="https://latente.gov.py/img/600x600/4ad34fe25b8b2c5a5369e51257445903.jpg" alt="Juego de 5 platos" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                  </div>
-      
-                  <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-                    <div>
-                      <div class="flex justify-between">
-                        <h4 class="text-sm">
-                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Juego de 5 platos</a>
-                        </h4>
-                        <p class="ml-4 text-sm font-medium text-gray-900">Gs. 220.000</p>
-                      </div>
-                      <p class="mt-1 text-sm text-gray-500">Juego de 5 platos, una tabla picadora y mazo. Elaborado sobre pedido por Abelardo Duarte</p>
-                      <p class="mt-1 text-sm text-gray-500"></p>
-                    </div>
-      
-                    <div class="mt-4 flex flex-1 items-end justify-between">
-                      <p class="flex items-center space-x-2 text-sm text-gray-700">
-                        <svg class="h-5 w-5 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                        </svg>
-                        <span>Disponible</span>
-                      </p>
-                      <div class="ml-4">
-                        <button type="button" class="text-sm font-medium text-red-600 hover:text-red-400">
-                          <span>Eliminar</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-      
+              <form action = "/enviar_compra" method="post" id = "product_list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                   
                 <!-- More products... -->
-              </ul>
+                <div class="mt-10">
+                  <button type="submit" class="w-full rounded-md border border-transparent bg-orange-400 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Procesar pedido</button>
+                </div>
+                
+              </form>
             </section>
       
             <!-- Order summary -->
@@ -174,27 +112,25 @@
                 <dl class="space-y-4">
                   <div class="flex items-center justify-between">
                     <dt class="text-base font-medium text-gray-900">Subtotal</dt>
-                    <dd class="ml-4 text-base font-medium text-gray-900">Gs. 440.000</dd>
+                    <div id = "total" class="ml-4 text-base font-medium text-gray-900"></div>
                   </div>
                 </dl>
                 <p class="mt-1 text-sm text-gray-500">El costo de envio sera calculado al finalizar el proceso.</p>
               </div>
       
-              <div class="mt-10">
-                <button type="submit" class="w-full rounded-md border border-transparent bg-orange-400 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Procesar pedido</button>
-              </div>
+              
       
               <div class="mt-6 text-center text-sm">
                 <p>
                   
-                  <a href="#" class="font-medium text-teal-800 hover:text-teal-600">
+                  <a href="/render_catalogo" class="font-medium text-teal-800 hover:text-teal-600">
                     Seguir comprando
                     <span aria-hidden="true"> &rarr;</span>
                   </a>
                 </p>
               </div>
             </section>
-          </form>
+          
         </div>
       </div>
   
@@ -290,7 +226,55 @@
         </div>
       </footer>
 
+      <script>
 
+        carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
+        product_list = document.getElementById('product_list')
+        campo_total = document.getElementById('total')
+
+        subtotal = 0;
+
+        for (i = 0; i< carritoRecuperado.length; i++){
+
+          console.log(carritoRecuperado[i].nombre)
+          subtotal += parseInt(carritoRecuperado[i].total)
+          product_list.innerHTML += `
+                <li class="flex py-6">
+                    <div class="flex-shrink-0">
+                      <img src="${carritoRecuperado[i].imagen}" alt="Kit de mate" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
+                    </div>
+        
+                    <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                      <div>
+                        <div class="flex justify-between">
+                          <h4 class="text-sm">
+                            <input type="text"  name = "producto" id = "producto" readonly value ="${carritoRecuperado[i].nombre}" class="font-medium text-gray-700 hover:text-gray-800">
+                          </h4>
+                          <input type="text"  name = "precio" id = "precio" readonly   value = "${carritoRecuperado[i].precio}" class="ml-4 text-sm font-medium text-gray-900">
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">Elaborado sobre pedido de 24 a 48 horas</p>
+                        <p class="mt-1 text-sm text-gray-500"></p>
+                      </div>
+        
+                      <div class="mt-4 flex flex-1 items-end justify-between">
+                        <p class="flex items-center space-x-2 text-sm text-gray-700">
+                          <svg class="h-5 w-5 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                          </svg>
+                          <input type="text"  name = "cantidad" id = "cantidad" readonly  value = " ${carritoRecuperado[i].cantidad} ">Cantidad:</input>
+                        </p>
+                        <div class="ml-4">
+                          <button type="button" class="text-sm font-medium text-red-600 hover:text-red-400">
+                            <input type="text"  name = "total" id = "total"  value ="${carritoRecuperado[i].total}" > </input>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>`
+                  
+                  campo_total.textContent = subtotal;
+              }
+      </script>
 
 </body>
 </html>
