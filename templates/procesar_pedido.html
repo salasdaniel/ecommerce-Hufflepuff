@@ -7,11 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
   </head>
-  <body>
 
-    <header class="fixed top-0 w-full " style="background-image: url(https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+
+  <body class="bg-[url('/static/uploads/trabajando6.png')] bg-no-repeat bg-cover bg-center w-screen h-screen" >
+    <header class="fixed top-0 w-full w-screen" style="background-image: url(https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
       <nav
-        class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        class="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8 w-screen"
         aria-label="Global"
       >
         
@@ -23,8 +33,8 @@
             alt=""
           />
         </a>
-        <div class="flex flex-1 ">
-            <div class="mt-2 hidden lg:flex lg:gap-x-12">
+        <div class="flex flex-1 place-content-center">
+            <div class="mt-2 hidden lg:flex lg:gap-x-4">
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-200 ">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
@@ -85,39 +95,38 @@
     <title>E-commerce</title>
   </head>
 
-
-<main class="#bg-image justify-center flex items-center h-[100] flex justify-between flex-col"> 
+<main class="justify-center flex items-center h-[100] flex justify-between flex-col w-screen h-screen" > 
 <div>
-  <div class="bg-gray-50 mx-auto max-w-2xl px-4  pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+  <div class=" mx-auto max-w-2xl px-4 pt-16 sm:px-6 lg:max-w-7xl lg:px-8 w-screen">
     <h2 class="sr-only"></h2>
 
     <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
       <div>
         <div>
     
-          <h2 class="text-lg font-medium text-gray-900 font-extralight mt-16 ">INFORMACION</h2>
+          <h2 class="text-lg font-medium text-black font-bold font-extralight mt-16 "> INFORMACIÓN </h2>
 
           <div class="mt-4">
-            <label for="correo-electronico" class="block text-sm font-medium text-gray-700">Correo electronico</label>
+            <label for="correo-electronico" class="block text-base font-medium italic text-gray-700">Correo electronico</label>
             <div class="mt-1">
               <input type="email" id="email-address" name="email-address" autocomplete="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
           </div>
         </div>
 
-        <div class="mt-10 border-t border-gray-200 pt-10">
-          <h2 class="text-lg font-medium text-gray-900">DETALLES PARA LA FACTURACION</h2>
+        <div class="mt-8 border-t border-gray-200 pt-6">
+          <h2 class="text-lg font-medium text-gray-900">DETALLES PARA ENVIO & FACTURACIÓN </h2>
 
           <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
             <div>
-              <label for="first-name" class="block text-sm font-medium text-gray-700">Nombre</label>
+              <label for="first-name" class="block text-base font-medium italic text-gray-700">Nombre</label>
               <div class="mt-1">
                 <input type="text" id="first-name" name="first-name" autocomplete="given-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div>
-              <label for="last-name" class="block text-sm font-medium text-gray-700">Apellido</label>
+              <label for="last-name" class="block text-base font-medium italic text-gray-700">Apellido</label>
               <div class="mt-1">
                 <input type="text" id="last-name" name="last-name" autocomplete="family-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
@@ -125,24 +134,24 @@
 
           
             <div class="sm:col-span-2">
-              <label for="address" class="block text-sm font-medium text-gray-700">Direccion</label>
+              <label for="address" class="block text-base font-medium italic text-gray-700">Dirección</label>
               <div class="mt-1">
                 <input type="text" name="address" id="address" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div class="sm:col-span-2">
-              <label for="apartment" class="block text-sm font-medium text-gray-700">Referencia, nro de casa, etc. </label>
+              <label for="apartment" class="block text-base font-medium italic text-gray-700">Referencia, nro de casa, etc. </label>
               <div class="mt-1">
                 <input type="text" name="apartment" id="apartment" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
             </div>
 
             <div>
-              <label for="country" class="block text-sm font-medium text-gray-700">Ciudad</label>
+              <label for="country" class="block text-base font-medium italic text-gray-700">Ciudad</label>
               <div class="mt-1">
                 <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <option>Asuncion</option>
+                  <option>Asunción</option>
                   <option>Luque</option>
                   <option>Lambare</option>
                   <option>San Lorenzo</option>
@@ -152,7 +161,7 @@
             </div>
 
             <div>
-              <label for="region" class="block text-sm font-medium text-gray-700">Barrio</label>
+              <label for="region" class="block text-base font-medium italic text-gray-700">Barrio</label>
               <div class="mt-1">
                 <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
@@ -163,7 +172,7 @@
           
 
             <div class="sm:col-span-2">
-              <label for="phone" class="block text-sm font-medium text-gray-700">Telefono</label>
+              <label for="phone" class="block text-base font-medium italic text-gray-700">Telefono</label>
               <div class="">
                 <input type="text" name="phone" id="phone" autocomplete="tel" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
@@ -171,7 +180,7 @@
           </div>
         </div>
 
-        <div class="mt-10 border-t border-gray-200 pt-10">
+        <div class="mt-4 border-t border-gray-200 pt-4">
           <fieldset>
             <legend class="text-lg font-medium text-gray-900">ENVIO</legend>
 
@@ -219,7 +228,7 @@
         </div>
 
         <!-- Payment -->
-        <div class="mt-10 border-t border-gray-200 pt-10">
+        <div class="mt-2 border-t border-gray-200 pt-4">
           <h2 class="text-lg font-medium text-gray-900">FORMA DE PAGO</h2>
 
           <fieldset class="mt-4">
@@ -242,25 +251,15 @@
             </div>
           </fieldset>
 
-          <div class="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
+          <div class="mt-4 grid grid-cols-4 gap-x-4 gap-y-6">
             <div class="col-span-4">
               <div class="mt-1">
               </div>
             </div>
 
-            <div class="col-span-4">
-              <div class="mt-1">
-              </div>
-            </div>
-
-            <div class="col-span-3">
-              <div class="mt-1">
-              </div>
-            </div>
-
+         
             <div>
-              <div class="mt-1">
-              </div>
+            
             </div>
           </div>
         </div>

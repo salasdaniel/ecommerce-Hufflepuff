@@ -1,5 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, session
+from flask import Flask, request, render_template, redirect, url_for, flash, session #Bruh...
+from flask_wtf import FlaskForm
+from wtforms import StringField, EmailField, PasswordField, SubmitField
+from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user, session
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
@@ -16,6 +20,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///database.db'
 app.config['SECRET_KEY']= 'Salas.13' #CONTRASENIA PARA LA DATABASE
 db = SQLAlchemy(app)
+app.secret_key = 'cualquieraxd' #Pa probar auxilio
 app.secret_key = 'cualquieraxd'
 
 #------------------------------ Crear motor de base de datos para poder extraer los datos----------------------------------
@@ -60,6 +65,34 @@ class Penitenciaria(db.Model):
     ciudad = db.Column(db.String(50))
     nombre = db.Column(db.String(50))
 
+# --------------------------- Creacion de la tabla de Usuarios en db--------------------
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+
+# --------------------------- Creacion de la tabla Compras en db--------------------
+class Compra(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    producto = db.Column(db.String(20))
+    precio = db.Column(db.Integer())
+    fecha = db.Column(db.DateTime)
+    total = db.Column(db.Integer())
+
+# --------------------------- Creacion de la tabla Datos del cliente--------------------
+class Datos_cliente(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(50), nullable=False)
+    apellido = db.Column(db.String(50), nullable=False)
+    ruc = db.Column(db.Integer(), nullable=False)
+    ciudad = db.Column(db.String(50), nullable=False)
+    barrio = db.Column(db.String(50), nullable=False)
+    direccion = db.Column(db.String(50), nullable=False)
+    telefono = db.Column(db.Integer(), nullable=False)
+    email = db.Column(db.String(50))
+    pago = db.Column(db.String(50))
+
+    
 # --------------------------- Creacion de la tabla compra en db--------------------    
 class Compra(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -118,7 +151,19 @@ def render_catalogo ():
 
 
 
-        
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/pago")
+def pago():
+
+    return render_template("pago.html")
+
 #------------------formulario para agregar producto --------------------------------------------------------------------
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
