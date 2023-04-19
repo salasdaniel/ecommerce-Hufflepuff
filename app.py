@@ -72,12 +72,6 @@ class Usuario(db.Model):
     password = db.Column(db.String(50), nullable=False)
 
 # --------------------------- Creacion de la tabla Compras en db--------------------
-class Compra(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    producto = db.Column(db.String(20))
-    precio = db.Column(db.Integer())
-    fecha = db.Column(db.DateTime)
-    total = db.Column(db.Integer())
 
 # --------------------------- Creacion de la tabla Datos del cliente--------------------
 class Datos_cliente(db.Model):
